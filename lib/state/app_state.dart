@@ -13,7 +13,18 @@ import '../features/profile/domain/resume.dart';
 /// swap the two Mock repositories for ApiJobRepository / ApiAuthRepository.
 final appState = AppState(MockJobRepository(), MockAuthRepository());
 
-enum JobSort { newest, bestMatch, deadline }
+enum JobSort { newest, bestMatch, deadline, salary }
+/// Highest number in a salary text, e.g. 'PKR 180k - 250k / month' -> 250000.
+/// Returns 0 when no number is found.
+double salaryValue(Job j) {
+  var best = 0.0;
+  for (final m in RegExp(r'(\d+(?:\.\d+)?)\s*([kK])?').allMatches(j.salary)) {
+    var n = double.parse(m.group(1)!);
+    if (m.group(2) != null) n *= 1000;
+    if (n > best) best = n;
+  }
+  return best;
+}
 
 class AppState extends ChangeNotifier {
   AppState(this._repo, this._auth);
@@ -166,6 +177,8 @@ class AppState extends ChangeNotifier {
           if (y == null) return -1;
           return x.compareTo(y);
         });
+      case JobSort.salary:
+        list.sort((a, b) => salaryValue(b).compareTo(salaryValue(a)));
     }
     return list;
   }
