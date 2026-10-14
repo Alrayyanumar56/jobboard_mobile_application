@@ -26,6 +26,7 @@ class HomeScreen extends StatelessWidget {
               PopupMenuItem(value: JobSort.newest, child: Text('Newest')),
               PopupMenuItem(value: JobSort.bestMatch, child: Text('Best match')),
               PopupMenuItem(value: JobSort.deadline, child: Text('Closing soon')),
+              PopupMenuItem(value: JobSort.salary, child: Text('Highest salary')),
             ],
           ),
           const NotificationBell(),
