@@ -5,6 +5,7 @@ import '../../profile/domain/resume.dart';
 import '../../profile/resume_screen.dart';
 import '../domain/job.dart';
 import 'job_badges.dart';
+import 'job_card.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   const JobDetailsScreen({super.key, required this.job});
@@ -55,6 +56,13 @@ class JobDetailsScreen extends StatelessWidget {
             ]),
             const SizedBox(height: 8),
             JobMeta(job: j),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                'Posted ${formatDate(j.postedDate)} (${timeAgo(j.postedDate).toLowerCase()})',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
             if (j.deadline != null)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
