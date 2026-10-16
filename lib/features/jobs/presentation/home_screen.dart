@@ -5,6 +5,7 @@ import '../../profile/domain/resume.dart';
 import '../domain/job.dart';
 import 'job_card.dart';
 import 'job_details_screen.dart';
+import 'job_skeleton.dart';
 
 const jobTypes = ['Full-time', 'Part-time', 'Internship'];
 
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _body(BuildContext context) {
-    if (appState.loading) return const Center(child: CircularProgressIndicator());
+    if (appState.loading) return const JobListSkeleton();
     if (appState.error != null) {
       return Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
