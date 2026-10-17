@@ -110,12 +110,20 @@ class _PostJobScreenState extends State<PostJobScreen> {
               leading: const Icon(Icons.event),
               title: const Text('Application deadline'),
               subtitle: Text(_deadline == null ? 'No deadline' : formatDate(_deadline!)),
-              trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                if (_deadline != null)
-                  IconButton(icon: const Icon(Icons.clear), onPressed: () => setState(() => _deadline = null)),
-                TextButton(onPressed: _pickDeadline, child: const Text('Change')),
-              ]),
+              trailing: TextButton(
+                onPressed: _pickDeadline,
+                child: Text(_deadline == null ? 'Set' : 'Change'),
+              ),
             ),
+            if (_deadline != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton.icon(
+                  icon: const Icon(Icons.clear),
+                  label: const Text('Remove deadline'),
+                  onPressed: () => setState(() => _deadline = null),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: TextFormField(

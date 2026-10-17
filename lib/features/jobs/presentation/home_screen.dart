@@ -102,7 +102,7 @@ class HomeScreen extends StatelessWidget {
           child: Text('Recommended for you', style: theme.textTheme.titleMedium),
         ),
         SizedBox(
-          height: 112,
+          height: MediaQuery.textScalerOf(context).scale(112),
           child: ListView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 12),
