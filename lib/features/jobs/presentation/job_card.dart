@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../state/app_state.dart';
 import '../domain/job.dart';
+import 'job_badges.dart';
 import 'job_details_screen.dart';
 
 String timeAgo(DateTime d) {
@@ -78,8 +79,10 @@ class JobCard extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text('${job.employmentType} • ${job.salary}', style: theme.textTheme.bodySmall),
                 const SizedBox(height: 2),
-                Text(timeAgo(job.postedDate),
+                Text('Posted ${timeAgo(job.postedDate).toLowerCase()}',
                     style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.outline)),
+                const SizedBox(height: 8),
+                JobMeta(job: job),
               ]),
             ),
             IconButton(
