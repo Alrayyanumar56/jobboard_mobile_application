@@ -17,6 +17,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password = TextEditingController();
   UserRole _role = UserRole.seeker;
   bool _busy = false;
+  bool _obscure = true;
   String? _error;
 
   @override
@@ -84,9 +85,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _password,
-              obscureText: true,
+              obscureText: _obscure,
               validator: passwordField,
-              decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  tooltip: _obscure ? 'Show password' : 'Hide password',
+                  icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                  onPressed: () => setState(() => _obscure = !_obscure),
+                ),
+              ),
             ),
             if (_error != null)
               Padding(
