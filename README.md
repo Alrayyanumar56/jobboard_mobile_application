@@ -1,20 +1,36 @@
-# jobboard_mobile_application
+# JobBoard – Flutter Mobile App
 
-A new Flutter project.
+A job board app for Android built with Flutter (Material 3). Job seekers browse, search, save and apply for jobs; employers post jobs and manage applicants.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Authentication**: login and registration with form validation, separate seeker and employer roles, splash screen and auth gate
+- **Jobs**: home list with search/filter, job cards, a details page, and loading skeletons
+- **Saved jobs and applications**: save jobs, apply, and track application status
+- **Employer side**: post jobs, view applicants, change application status
+- **Profile and resume** screens, plus in-app notifications
+- **Light and dark themes**
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+The app is organized by feature, with each feature split into domain, data and presentation layers. Screens depend on repository interfaces (`AuthRepository`, `JobRepository`), not on a concrete data source. The current build uses mock implementations, so connecting a real REST API means adding an API-backed repository, with no changes to the screens.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run it
+
+```bash
+flutter pub get
+flutter run
+```
+
+Build an Android APK:
+
+```bash
+flutter build apk --release
+```
+
+## Screenshots
+
+_Coming soon._
 
 ## Project Structure
 
